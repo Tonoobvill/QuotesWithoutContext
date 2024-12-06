@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Funny words without context">
+    <meta name="color-scheme" content="dark" />
+    <title>Quotes Without Context</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="./jquery.lettering.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#container p").lettering('words');
+        });
+    </script>
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <style>
+        * {
+            --emily: #c00000;
+            --natasha: #ff4242;
+            --marci: #9ac791;
+            --alex: #a882ff;
+            --jonah: #a84a00;
+            --jewel: #e4b400;
+            --lauren: #2bcd6f;
+        }
+
+        body {
+            display: flex;
+            box-sizing: border-box;
+            flex-direction: column;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            font-family: "Roboto", sans-serif;
+            background-color: #111;
+            color: #eee;
+        }
+
+        ::selection {
+            background-color: #eee;
+            color: #111;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #111;
+            border-radius: 10px;
+        }
+
+        /* Center the loader */
+        #loader {
+            height: 5px;
+            background: #a882ff linear-gradient(to right, #111, #a882ff );
+            background-size: 100%;
+            animation: 1s linear loader;
+            width: 100%;
+            left: 0;
+            position: fixed;
+            top: 0;
+        }
+
+        @keyframes loader {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        #quotes,
+        .quotes {
+            position: relative;
+            animation-name: animatebottom;
+            animation-duration: 1s;
+            display: none;
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 1;
+            }
+        }
+
+        .filterDiv {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .container {
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        #buttons {
+            cursor: default;
+        }
+
+        .button {
+            border: 3px solid #0000;
+            outline: none;
+            padding: 12px 16px;
+            background-color: #0000;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            border-radius: 20px;
+            color: #888;
+            font-weight: bold;
+        }
+
+        button:hover {
+            border: 3px solid #888;
+            border-radius: 10px;
+        }
+
+        .button.active {
+            background-color: #0000;
+        }
+
+        .button.active {
+            color: #eee;
+        }
+
+        .button.active.emily {
+            color: var(--emily);
+        }
+
+        .emily::selection,
+        .emily span::selection {
+            background-color: var(--emily);
+            color: #eee;
+        }
+
+        .emily>span:last-child {
+            color: var(--emily);
+        }
+
+        .button.active.natasha {
+            color: var(--natasha);
+        }
+
+        .natasha::selection,
+        .natasha span::selection {
+            background-color: var(--natasha);
+            color: #eee;
+        }
+
+        .natasha>span:last-child {
+            color: var(--natasha);
+        }
+
+        .button.active.marci {
+            color: var(--marci);
+        }
+
+        .marci::selection,
+        .marci span::selection {
+            background-color: var(--marci);
+            color: #eee;
+        }
+
+        .marci>span:last-child {
+            color: var(--marci);
+        }
+
+        .button.active.alex {
+            color: var(--alex);
+        }
+
+        .alex::selection,
+        .alex span::selection {
+            background-color: var(--alex);
+            color: #eee;
+        }
+
+        .alex>span:last-child {
+            color: var(--alex);
+        }
+
+        .button.active.jonah {
+            color: var(--jonah);
+        }
+
+        .jonah::selection,
+        .jonah span::selection {
+            background-color: var(--jonah);
+            color: #eee;
+        }
+
+        .jonah>span:last-child {
+            color: var(--jonah);
+        }
+
+        .button.active.jewel {
+            color: var(--jewel);
+        }
+
+        .jewel::selection,
+        .jewel span::selection {
+            background-color: var(--jewel);
+            color: #eee;
+        }
+
+        .jewel>span:last-child {
+            color: var(--jewel);
+        }
+
+        .button.active.lauren {
+            color: var(--lauren);
+        }
+
+        .lauren::selection,
+        .lauren span::selection {
+            background-color: var(--lauren);
+            color: #eee;
+        }
+
+        .lauren>span:last-child {
+            color: var(--lauren);
+        }
+
+        .button.active.random {
+            color: var(--krai-white);
+        }
+    </style>
+</head>
+
+<body onload="myFunction()" style="margin:0;">
+    <div id="loader"></div>
+    <div style="display:none;" id="quotes" class="quotes">
+        <h1>Quotes Without Context</h1>
+
+        <div id="buttons">
+            <button class="button active" onclick="filterSelection('all')"> All</button>
+            <button class="button emily" onclick="filterSelection('emily')"> Emily</button>
+            <button class="button natasha" onclick="filterSelection('natasha')"> Natasha</button>
+            <button class="button marci" onclick="filterSelection('marci')"> Marci</button>
+            <button class="button alex" onclick="filterSelection('alex')"> Alex</button>
+            <button class="button jonah" onclick="filterSelection('jonah')"> Jonah</button>
+            <button class="button jewel" onclick="filterSelection('jewel')"> Jewel</button>
+            <button class="button lauren" onclick="filterSelection('lauren')"> Lauren</button>
+            <button class="button random" onclick="filterSelection('random')"> Random</button>
+        </div>
+
+        <div id="container" class="container">
+            <p class="filterDiv emily">"Yes sperm, I also have a sugar daddy." -Emily</p>
+            <p class="filterDiv emily">*barks* -Emily</p>
+            <p class="filterDiv emily">"I'm white." -Emily</p>
+            <p class="filterDiv random">"You fucked god?! Does that make me Jesus?!" -random</p>
+            <p class="filterDiv emily">*has a conversation with her mom about sex toys* -Emily</p>
+            <p class="filterDiv random">"Five of my seven moms have a penis." -random</p>
+            <p class="filterDiv">"Juh-hosey." -teacher</p>
+            <p class="filterDiv emily">"I put my finger inside of it and pulled something out, it felt good." -Emily</p>
+            <p class="filterDiv">"This is all sexual." -teacher</p>
+            <p class="filterDiv emily">*moans* -Emily</p>
+            <p class="filterDiv emily">"His ass the the only way I remember him." -Emily</p>
+            <p class="filterDiv random">"Make me wet please." -random</p>
+            <p class="filterDiv emily">"It feels nice, I swear." -Emily</p>
+            <p class="filterDiv emily">"I'll just squat, it feels good." -Emily</p>
+            <p class="filterDiv emily">"I play dumb with sexual things." -Emily</p>
+            <p class="filterDiv emily">"You would know I'm submissive." -Emily</p>
+            <p class="filterDiv emily">"I'm a sadistic masochist." -Emily</p>
+            <p class="filterDiv emily">"It just slipped right through." -Emily</p>
+            <p class="filterDiv emily">"Please refer to me as a sadistic masochist." -Emily</p>
+            <p class="filterDiv emily">"You stuck your finger in there." -Emily</p>
+            <p class="filterDiv emily">"I bent my back the wrong way." -Emily</p>
+            <p class="filterDiv emily">"I bent my back the right way." -Emily</p>
+            <p class="filterDiv emily">"I love watching gay porn." -Emily</p>
+            <p class="filterDiv emily">"I don't vibrate that much." -Emily</p>
+            <p class="filterDiv emily">"Your my international super spy." -Emily</p>
+            <p class="filterDiv emily">"Owie Kazowie." -Emily</p>
+            <p class="filterDiv random">"Five of my moms have a penis." -random
+            <p class="filterDiv random">"You gotta beat yourself to become darker." -random
+            <p class="filterDiv emily">"I had a mouthful last night." -Emily</p>
+            <p class="filterDiv random">"At lunch somebody's baby's head fell off." -random</p>
+            <p class="filterDiv random">"The kid is dead." -random</p>
+            <p class="filterDiv emily">"Why did I put it in there." -Emily</p>
+            <p class="filterDiv emily">"I sucked dick on accident." -Emily</p>
+            <p class="filterDiv emily">"His ass is great it's fluffy like a pillow." -Emily</p>
+            <p class="filterDiv emily">"I NEED the white things." -Emily</p>
+            <p class="filterDiv emily">"Nice cock." -Emily</p>
+            <p class="filterDiv emily">"I saw you shove it inside." -Emily</p>
+            <p class="filterDiv emily">"I'm going to lose my virginity I need it back." -Emily</p>
+            <p class="filterDiv emily">"Shush your shushers." -Emily</p>
+            <p class="filterDiv emily">"Why'd he do it with two fingers when he could just do it with one." -Emily</p>
+            <p class="filterDiv emily">"Don't put it in there." -Emily</p>
+            <p class="filterDiv emily">"It's so dirty." -Emily</p>
+            <p class="filterDiv random">"Didn't your parents teach you self respect and not to fuck yourself on camera." -random</p>
+            <p class="filterDiv emily">"I don't like how that felt." -Emily</p>
+            <p class="filterDiv emily">"Stop rubbing it." -Emily</p>
+            <p class="filterDiv random">"CHILDREN." -random</p>
+            <p class="filterDiv emily">"I wish I had an ass." -Emily</p>
+            <p class="filterDiv emily">"It's got a hole." -Emily</p>
+            <p class="filterDiv emily">"I want all his body parts." -Emily</p>
+            <p class="filterDiv random">"I'm going to McDonald's and ordering a mcgangbang." -random</p>
+            <p class="filterDiv emily">"It came out my ass." -Emily</p>
+            <p class="filterDiv emily">"I'm not gonna fuck anybody, that's weird." -Emily</p>
+            <p class="filterDiv emily">"Strip across the table?!" -Emily</p>
+            <p class="filterDiv emily">"I didn't bang the table, I went like that." -Emily</p>
+            <p class="filterDiv emily">"Fuck your foot." -Emily</p>
+            <p class="filterDiv emily">"My nine inch cock." -Emily</p>
+            <p class="filterDiv">"It's so big we don't know how deep it goes." -teacher</p>
+            <p class="filterDiv random">"Get on your knees and start sucking." -random</p>
+            <p class="filterDiv">"Is there banana on my butt?" -teacher</p>
+            <p class="filterDiv">"Give it to me, I want it." -Natasha</p>
+            <p class="filterDiv random">"If this embryo doesn't become a fetus, I fucking swear." -random</p>
+            <p class="filterDiv emily">"I will shove it in my bra." -Emily</p>
+            <p class="filterDiv random">"This penguin ass looking mother fucker." -random</p>
+            <p class="filterDiv random">"If you like glamrock Freddy u either like big himbos or have daddy issues, most likely both." -random</p>
+            <p class="filterDiv">"Sex, wait that sounds bad." -teacher</p>
+            <p class="filterDiv">"In this class murder is OK." -teacher</p>
+            <p class="filterDiv">"Lebron James golf record." -teacher</p>
+            <p class="filterDiv random">"Its hotter than a gorillas pussy in here." -random</p>
+            <p class="filterDiv emily">"Light them on fire." -Emily</p>
+            <p class="filterDiv emily">"Finger his butthole." -Emily</p>
+            <p class="filterDiv">"69 wars, 69 wars that's a lot." -teacher</p>
+            <p class="filterDiv emily">"Theres like five gays in here." -Emily</p>
+            <p class="filterDiv emily">"How far did you shove it up there." -Emily</p>
+            <p class="filterDiv emily">"You need to stop taking things out of context." -Emily</p>
+            <p class="filterDiv emily">"I have ab erectile distinction." -Emily</p>
+            <p class="filterDiv emily">"You need to put it back in there." -Emily</p>
+            <p class="filterDiv emily">"I'm not talking about fucking." -Emily</p>
+            <p class="filterDiv emily">"It increased in size." -Emily</p>
+            <p class="filterDiv emily">"Woah that was funky." -Emily</p>
+            <p class="filterDiv emily">"It's not even in there." -Emily</p>
+            <p class="filterDiv random">"I'm going to McDonalds and ordering a mcgangbang." -random</p>
+            <p class="filterDiv emily">"Neoooowh." -Emily</p>
+            <p class="filterDiv emily">"I'm so dirty." -Emily</p>
+            <p class="filterDiv">"I want your babies." -teacher</p>
+            <p class="filterDiv random">"At lunch somebody's baby's head fell off." -random</p>
+            <p class="filterDiv emily">"His ass is the only way I remember him." -Emily</p>
+            <p class="filterDiv random">"Bitch-e-tiddies." -random</p>
+            <p class="filterDiv eve">"We would all frolic in the rain together." -Eve</p>
+            <p class="filterDiv">"There's no way to tell how thick it is." -Ayla</p>
+            <p class="filterDiv random">"FLASH ME." -random</p>
+            <p class="filterDiv">"I like crack." -Rocco</p>
+            <p class="filterDiv">"I can't eat anything, you get jealous of the food I eat." -Rocco</p>
+            <p class="filterDiv marci">"It looks like I'm fucking the frog, I'm not fucking the frog." -Marci</p>
+            <p class="filterDiv  griffin">"I just had fried chicken and hot sauce, I feel like a black dude." -Griffin</p>
+            <p class="filterDiv jewel">"I take pride in my crackers." -Jewel</p>
+            <p class="filterDiv jewel">"I wanna be eaten." -Jewel</p>
+            <p class="filterDiv marci">"Musically Marci can handle that." -Marci</p>
+            <p class="filterDiv jonah">"I have a box of kraft Mac n cheese in my room." -Jonah</p>
+            <p class="filterDiv natasha">"I got rid of my gag reflex last year." -Natasha</p>
+            <p class="filterDiv">"Can you quote this?" -Aaron</p>
+            <p class="filterDiv natasha">"I don't think we can use ourselves." -Natasha</p>
+            <p class="filterDiv natasha">"I also love watching gay porn, I understand that." -Natasha</p>
+            <p class="filterDiv natasha">*deepthroats a pen*." -Natasha</p>
+            <p class="filterDiv natasha">"You don't know what's been down my throat." -Natasha</p>
+            <p class="filterDiv natasha">"Guess what I lost last night." -Natasha</p>
+            <p class="filterDiv">"Stealing is a level three task." -teacher</p>
+            <p class="filterDiv natasha">"Its more fun with the wood." -Natasha</p>
+            <p class="filterDiv random">"I'm gonna riddle your face off." -random</p>
+            <p class="filterDiv natasha">"I also want that." -Natasha</p>
+            <p class="filterDiv natasha">"Not just pens." -Natasha</p>
+            <p class="filterDiv">"I'll fuck you." -Emma</p>
+            <p class="filterDiv">"Do it at the base where its most effective." -Rocco</p>
+            <p class="filterDiv">"A lot of fun words end in ck." -Rocco</p>
+            <p class="filterDiv">"Cock tastes good." -Rocco</p>
+            <p class="filterDiv natasha">"I don't have one yet." -Natasha</p>
+            <p class="filterDiv">"I'm shedding all over her jacket." -Emma</p>
+            <p class="filterDiv">"I can show you crazy if you want me to." -Emma</p>
+            <p class="filterDiv jewel">"I didn't like her screams." -Jewel</p>
+            <p class="filterDiv jewel">"Since when was I the smart one, I'm just the mom." -Jewel</p>
+            <p class="filterDiv jewel">"My stupidities immense." -Jewel</p>
+            <p class="filterDiv eve">"If your brown your wrong." -Eve</p>
+            <p class="filterDiv eve">"I want to be a cancer patient." -Eve</p>
+            <p class="filterDiv marci">"I love hot moms... Anyways..." -Marci</p>
+            <p class="filterDiv marci">"I squeezed it and it shot out liquid." -Marci</p>
+            <p class="filterDiv marci">"I have headphones on you degenerate piece of scum." -Marci</p>
+            <p class="filterDiv">"I know how to projectile spit." -Rocco</p>
+            <p class="filterDiv">"The Reese's cup is having an orgasm." -Rocco</p>
+            <p class="filterDiv">"You don't like how my rod moves?" -Rocco</p>
+            <p class="filterDiv natasha">"That's why I brought my stripper." -Natasha</p>
+            <p class="filterDiv natasha">"There's no pole so it doesn't matter." -Natasha</p>
+            <p class="filterDiv random">"And now we'll insert the shaft." -random</p>
+            <p class="filterDiv">"Yeah those are her strippers." -Emma</p>
+            <p class="filterDiv natasha">"Or is he emo shit." -Natasha</p>
+            <p class="filterDiv natasha">"Cock tastes good." -Natasha</p>
+            <p class="filterDiv eve">"My best friends black, I make her work in the fields every single day." -Eve</p>
+            <p class="filterDiv natasha">"All I heard was dildo." -Natasha</p>
+            <p class="filterDiv natasha">"I can bounce on this chair." -Natasha</p>
+            <p class="filterDiv natasha">"Do you think he could stand like that while getting blown." -Natasha</p>
+            <p class="filterDiv natasha">"I can make it sticky." -Natasha</p>
+            <p class="filterDiv natasha">"And I can do that with a lot of things." -Natasha</p>
+            <p class="filterDiv natasha">"I like being tied up." -Natasha</p>
+            <p class="filterDiv natasha">"Don't make me do it the long way... The long hard way." -Natasha</p>
+            <p class="filterDiv natasha">"Because it's either going to be dirty, horny, or nudes." -Natasha</p>
+            <p class="filterDiv natasha">"I've been touched too many times." -Natasha</p>
+            <p class="filterDiv">"You have dildos? I'll take one." -Emma</p>
+            <p class="filterDiv marci">"I am an organ harvester." -Marci</p>
+            <p class="filterDiv natasha">"In the ass." -Natasha</p>
+            <p class="filterDiv natasha">"That's worse than my sexting." -Natasha</p>
+            <p class="filterDiv natasha">"Like nearly losing my life and having to send nudes." -Natasha</p>
+            <p class="filterDiv natasha">"I'm kinda horny." -Natasha</p>
+            <p class="filterDiv natasha">"I'm stuck backwards." -Natasha</p>
+            <p class="filterDiv natasha">"That songs about oral." -Natasha</p>
+            <p class="filterDiv natasha">"And then you go deedeedeedee and then you're deepthroating." -Natasha</p>
+            <p class="filterDiv natasha">"This sucks, it probably swallows too." -Natasha</p>
+            <p class="filterDiv marci">"Mrs Frizzle is so quirky." -Marci</p>
+            <p class="filterDiv natasha">"There's a bruise on the back of my throat." -Natasha</p>
+            <p class="filterDiv natasha">"I was not sexting in seventh grade, eighth grade on the other hand." -Natasha</p>
+            <p class="filterDiv emily">"I love watching gay porn." -Emily</p>
+            <p class="filterDiv emily">"I don't vibrate that much." -Emily</p>
+            <p class="filterDiv emily">"Owie kazowie." -Emily</p>
+            <p class="filterDiv random">"Five of my moms have a penis." -random</p>
+            <p class="filterDiv random">"You gotta beat yourself to become darker." -random</p>
+            <p class="filterDiv emily">"I had a mouthful last night." -Emily</p>
+            <p class="filterDiv kara">"Hey joji have you seen my phallic collection." -Kara</p>
+            <p class="filterDiv">"Why are my tits so easy to seeee." -Mars</p>
+            <p class="filterDiv">"I'd love to be titted." -Mars</p>
+            <p class="filterDiv kara">"Tie me up and eat me mommy." -Kara</p>
+            <p class="filterDiv jewel">"I don't wanna be bred." -Jewel</p>
+            <p class="filterDiv natasha">"Allow me to just casually almost strangle myself." -Natasha</p>
+            <p class="filterDiv natasha">"I need a sugar high." -Natasha</p>
+            <p class="filterDiv natasha">"I think I could make some pretty good money sucking guys dicks and dancing" -Natasha</p>
+            <p class="filterDiv natasha">"Let me just show you something that I probably shouldn't." -Natasha</p>
+            <p class="filterDiv natasha">"Anime girls are hot, they got titties." -Natasha</p>
+            <p class="filterDiv natasha">"I need something to do with my mouth other than talk." -Natasha</p>
+            <p class="filterDiv random">"Peer pressure, go eat my chicken." -random</p>
+            <p class="filterDiv marci">"I just ate a giant pickle, It was delicious, I love pickles." -Marci</p>
+            <p class="filterDiv lauren">"@everyone jack off." -Lauren</p>
+            <p class="filterDiv alex">"It's not milk insert smug cat emoji here." -Alex</p>
+            <p class="filterDiv marci">*on hello kitty scooter*"Hey baby wanna ride?" -Marci</p>
+            <p class="filterDiv lauren">"You just made me cum in my pants." -Lauren</p>
+            <p class="filterDiv marci">"I'm so big and buff and manly that it makes people quake in their boots." -Marci</p>
+            <p class="filterDiv marci">"That hello kitty scooter was so hot." -Marci</p>
+            <p class="filterDiv marci">"I stole your face." -Marci</p>
+            <p class="filterDiv marci">"I am a ground dweller." -Marci</p>
+            <p class="filterDiv marci">"Is that a tibetan monk." -Marci</p>
+            <p class="filterDiv alex">"I can fit here." -Alex</p>
+            <p class="filterDiv alex">"I'm floating." -Alex</p>
+            <p class="filterDiv marci">"Alex is a floater." -Marci</p>
+            <p class="filterDiv marci">"It's hammer time." -Marci</p>
+            <p class="filterDiv alex">"I'm falling into the abyss." -Alex</p>
+            <p class="filterDiv alex">"I'm no longer falling into the abyss." -Alex</p>
+            <p class="filterDiv marci">"Bathrooms are for shitting, not for hammers." -Marci</p>
+            <p class="filterDiv marci">"all expired like the fuckin milk in my fridge." -Marci</p>
+            <p class="filterDiv alex">"If you walk into the parents room ignore what I'm doing." -Alex</p>
+            <p class="filterDiv marci">"Where did the purple book go, Jonah I will steal your fucking kneecaps." -Marci</p>
+            <p class="filterDiv jonah">"Then do it faster." -Jonah</p>
+            <p class="filterDiv marci">"You fucking stinker blinker." -Marci</p>
+            <p class="filterDiv jonah">"The eeegggsit." -Jonah</p>
+            <p class="filterDiv marci">"You suck, that's my job." -Marci</p>
+            <p class="filterDiv marci">"It's not funny haha, if funny I'm going to have a meltdown." -Marci</p>
+            <p class="filterDiv marci">"I am the autism creature." -Marci</p>
+            <p class="filterDiv marci">"I can't even hear your mad butthurtness." -Marci</p>
+            <p class="filterDiv marci">"I OPEN THE DOOR AND THERE'S JUST CHEEEHEHEHEEEEEESE." -Marci</p>
+            <p class="filterDiv alex">"I'm not Dylan, I'm not going to do that." -Alex</p>
+            <p class="filterDiv natasha">"I shove sharp things down my throat." -Natasha</p>
+            <p class="filterDiv">"So we can say sex and dick, but my quote takes it too far..? Ok..." -Keira</p>
+            <p class="filterDiv jonah">"I'm being a bad boy rn, I'm watching dead pool bc I can." -Jonah</p>
+            <p class="filterDiv marci">"Sex: Every night." -Marci</p>
+            <p class="filterDiv random">"Listen bbg I didn't castrate anyone." -random</p>
+            <p class="filterDiv random">"SPONGEBOB ARE YOU BRICKED UP." -random</p>
+            <p class="filterDiv alex">"I'm just quirky." -Alex</p>
+            <p class="filterDiv landon">"I'm Aylas little cum slut." -Landon</p>
+            <p class="filterDiv">"Gimme cock." -Mars</p>
+            <p class="filterDiv">"Gimme ur cock." -Mars</p>
+            <p class="filterDiv kara">"I have massive badonkers tho." -Kara</p>
+            <p class="filterDiv random">"Him in a deep purple would make me go feral I better see him dripped to the nines." -random</p>
+            <p class="filterDiv jewel">"Bruh I was wearing I suit yesterday." -Jewel</p>
+            <p class="filterDiv">"Meow." -Mars</p>
+            <p class="filterDiv random">"I wonder what the aerodynamics of a baby are." -random</p>
+            <p class="filterDiv jewel">"I LOVE BLACK BALLS." -Jewel</p>
+            <p class="filterDiv kara">"BOOBIES?? I LOVE BOOBIES." -Kara</p>
+            <p class="filterDiv kara">"I wanna be choked." -Kara</p>
+            <p class="filterDiv">"I love pussy." -Rocco</p>
+            <p class="filterDiv jewel">"Pussy is great." -Jewel</p>
+            <p class="filterDiv">"I wanna teach Albert Einstein how to get freaky in the sheets." -Mars</p>
+            <p class="filterDiv marci">"I have std." -Marci</p>
+            <p class="filterDiv marci">"KISS MY ASS YOU UGLY OLD BITCH." -Marci</p>
+            <p class="filterDiv natasha">"Why is it so long." -Natasha</p>
+            <p class="filterDiv natasha">"Its so long." -Natasha</p>
+            <p class="filterDiv natasha">"Oh god my gag reflex is back, when did that happen." -Natasha</p>
+            <p class="filterDiv">"I'm abusive as a joke." -Nathan</p>
+            <p class="filterDiv natasha">"I've done worse with my tongue." -Natasha</p>
+            <p class="filterDiv natasha">"Sucks more than I do.." -Natasha</p>
+            <p class="filterDiv lauren">"Put it in my mouth." -Lauren</p>
+            <p class="filterDiv natasha">"I'M A BOTTOM AND WOMEN CAN DO WHATEVER THE FUCK THEY WANT TO ME." -Natasha</p>
+            <p class="filterDiv natasha">"I may be short but my dick sure ain't." -Natasha</p>
+            <p class="filterDiv natasha">"I like to have fun with myself and anybody who wants to choke me." -Natasha</p>
+            <p class="filterDiv">"MY BALLS FELL OFF." -Lola</p>
+            <p class="filterDiv natasha">"I am gay I am gay I am gay I like tits not dick." -Natasha</p>
+            <p class="filterDiv natasha">"Oh I got stuck." -Natasha</p>
+            <p class="filterDiv natasha">"Where in my face or in my ass." -Natasha</p>
+            <p class="filterDiv natasha">*hehe*"yes daddy." -Natasha</p>
+            <p class="filterDiv natasha">"I mean you can do that to me any day man" - Natasha</p>
+            <p class="filterDiv natasha">" I think I prefer the bondage and discipline." -Natasha</p>
+            <p class="filterDiv natasha">"How big is that statue, does it give good head." -Natasha</p>
+            <p class="filterDiv natasha">"Blood kink much? Couldn't be me." -Natasha</p>
+            <p class="filterDiv natasha">"Very comfy to sit on, in all positions." -Natasha</p>
+            <p class="filterDiv natasha">"The devil is literally telling me to be a sex slave." -Natasha</p>
+            <p class="filterDiv natasha">"I'll give free head for a week." -Natasha</p>
+            <p class="filterDiv natasha">*does ahegao face three times*." -Natasha</p>
+            <p class="filterDiv natasha">"Didn't we do 69 yesterday?" -Natasha</p>
+            <p class="filterDiv natasha">"I suck on it too." -Natasha</p>
+            <p class="filterDiv natasha">"I'm kinda hooked on you and in the mood for an obsession." -Natasha</p>
+            <p class="filterDiv natasha">"Missed me missed me now you gotta kiss me... or, y'know, rail me. either or, I don't mind.." -Natasha</p>
+            <p class="filterDiv natasha">"i'm a bitch, deal with it or fuck it out of me, your choice.." -Natasha</p>
+            <p class="filterDiv">"I want waffles and him to rearrange my organs." -Ayla</p>
+            <p class="filterDiv natasha">"This poor computer has been molested so many times." -Natasha</p>
+            <p class="filterDiv marci">"*sad peppermint bark noises*." -Marci</p>
+            <p class="filterDiv natasha">"I do so many things." -Natasha</p>
+            <p class="filterDiv natasha">"I was sucking on it too hard.." -Natasha</p>
+            <p class="filterDiv natasha">"As my hands are covered in a sticky substance." -Natasha</p>
+            <p class="filterDiv natasha">"Thats because I was sucking on it." -Natasha</p>
+            <p class="filterDiv">"Blow it but don't swallow." -Reese</p>
+            <p class="filterDiv">"I'll try but I won't last long." -Reese</p>
+            <p class="filterDiv natasha">"Don't jerk it." -Natasha</p>
+            <p class="filterDiv natasha">"A pen came on my tongue." -Natasha</p>
+            <p class="filterDiv natasha">"I shoved too much down my throat." -Natasha</p>
+            <p class="filterDiv natasha">"Are you enjoying the texture?" -Natasha</p>
+            <p class="filterDiv natasha">"I still feel it on my tongue." -Natasha</p>
+            <p class="filterDiv natasha">"Mines longer." -Natasha</p>
+            <p class="filterDiv natasha">"Why does this suck more than I do." -Natasha</p>
+            <p class="filterDiv natasha">"Why is it sticky." -Natasha</p>
+            <p class="filterDiv natasha">"I'm the whore, not my nails." -Natasha</p>
+            <p class="filterDiv natasha">"I bet I can even get 15 inch ones." -Natasha</p>
+            <p class="filterDiv natasha">"The brain does the tingle tingle think." -Natasha</p>
+            <p class="filterDiv natasha">"Imagine wearing shirts, thats the real L." -Natasha</p>
+            <p class="filterDiv marci">"I need some slimey balls." -Marci</p>
+            <p class="filterDiv marci">"You don't have that dog in you, your in that dog." -Marci</p>
+            <p class="filterDiv marci">"Ok so I hAAaveh." -Marci</p>
+            <p class="filterDiv marci">"I'm killing him for his sacks." -Marci</p>
+            <p class="filterDiv marci">"I see them for what they are, ink sacks." -Marci</p>
+            <p class="filterDiv marci">"I'm gonna see if I can slaughter an inky guy so I can have his sack." -Marci</p>
+            <p class="filterDiv marci">"I stripped it." -Marci</p>
+            <p class="filterDiv marci">"Y'all I'm making pot. A pot. Shit." -Marci</p>
+            <p class="filterDiv marci">"I'll show you my deep dark." -Marci</p>
+            <p class="filterDiv natasha">"Ooh its got a hole." -Natasha</p>
+            <p class="filterDiv natasha">"I did it on the table." -Natasha</p>
+            <p class="filterDiv natasha">"Why do you think I have so many." -Natasha</p>
+            <p class="filterDiv natasha">"That makes it sound like I was giving head to teachers." -Natasha</p>
+            <p class="filterDiv natasha">"Why is it *wet*." -Natasha</p>
+            <p class="filterDiv natasha">"It was a lovely angle, I don't think I can do it again, especially at school." -Natasha</p>
+            <p class="filterDiv natasha">"Suck on it, it works." -Natasha</p>
+            <p class="filterDiv natasha">"Why is this so hard." -Natasha</p>
+            <p class="filterDiv marci">"I woke up with a new boy body." -Marci</p>
+            <p class="filterDiv marci">"Nevermind, I don't know if you have an ass or not.." -Marci</p>
+            <p class="filterDiv marci">"I could put some unholy things in there.." -Marci</p>
+            <p class="filterDiv marci">"I love testicle tea.." -Marci</p>
+            <p class="filterDiv natasha">"Let daddy slender-man get you.." -Natasha</p>
+            <p class="filterDiv natasha">"Theres cum on my bag." -Natasha</p>
+            <p class="filterDiv natasha">"How am I supposed to look at slutty pictures of men." -Natasha</p>
+            <p class="filterDiv natasha">"I might've a hooker." -Natasha</p>
+            <p class="filterDiv natasha">"Their not as hard." -Natasha</p>
+            <p class="filterDiv natasha">"Fingers are easy." -Natasha</p>
+            <p class="filterDiv natasha">"The white stains too." -Natasha</p>
+            <p class="filterDiv natasha">"Because why not, its a hole." -Natasha</p>
+            <p class="filterDiv natasha">"Pac-man is hot." -Natasha</p>
+            <p class="filterDiv natasha">"Leave my bones alone." -Natasha</p>
+            <p class="filterDiv natasha">"I'm allergic to sex." -Natasha</p>
+            <p class="filterDiv natasha">"My ass is going to fall off." -Natasha</p>
+            <p class="filterDiv natasha">"I like dick." -Natasha</p>
+            <p class="filterDiv natasha">"I was on my knees." -Natasha</p>
+            <p class="filterDiv natasha">"I like hard things." -Natasha</p>
+            <p class="filterDiv natasha">"I like sitting on things." -Natasha</p>
+            <p class="filterDiv natasha">"He could fuck me any day, goddamn." -Natasha</p>
+            <p class="filterDiv natasha">"I would be a whore any day for him." -Natasha</p>
+            <p class="filterDiv natasha">"Fuck me in the ass." -Natasha</p>
+            <p class="filterDiv natasha">"Oh yeah, old men." -Natasha</p>
+            <p class="filterDiv natasha">"I just want the cock." -Natasha</p>
+            <p class="filterDiv natasha">"All of the cocks, all of them." -Natasha</p>
+            <p class="filterDiv natasha">"Idk where I get pegged I just wanna be pegged fr." -Natasha</p>
+            <p class="filterDiv natasha">"Give it to me daddy." -Natasha</p>
+            <p class="filterDiv natasha">"I have a bone daddy." -Natasha</p>
+            <p class="filterDiv natasha">"I'm not a lil bitch I'm just a bitch." -Natasha</p>
+            <p class="filterDiv natasha">"I WANT TO BE PEGGED." -Natasha</p>
+            <p class="filterDiv natasha">"A whore on the other hand." -Natasha</p>
+            <p class="filterDiv natasha">"MUSCLE MOMMY I AM SUBMISSIVE AND BREEDABLE." -Natasha</p>
+            <p class="filterDiv natasha">"I love it when my balls are blue." -Natasha</p>
+            <p class="filterDiv natasha">"Don't tempt me with a good time." -Natasha</p>
+            <p class="filterDiv natasha">"I do have a blood kink." -Natasha</p>
+            <p class="filterDiv natasha">"My ass is supposed to be there." -Natasha</p>
+            <p class="filterDiv natasha">"My mouth moves faster than my head." -Natasha</p>
+            <p class="filterDiv natasha">"My fingers don't work." -Natasha</p>
+            <p class="filterDiv natasha">"I'm good with my fingers." -Natasha</p>
+            <p class="filterDiv natasha">"I popped a boner." -Natasha</p>
+            <p class="filterDiv natasha">"I also suck ass, you know this." -Natasha</p>
+            <p class="filterDiv natasha">"Maybe I could fuck his kids." -Natasha</p>
+            <p class="filterDiv natasha">"I want him to fuck my brains out." -Natasha</p>
+            <p class="filterDiv natasha">"I can't even strip at that point cuz I don't wear underlayers." -Natasha</p>
+            <p class="filterDiv natasha">"I can spread them either way." -Natasha</p>
+            <p class="filterDiv natasha">"Mark could drill my ass." -Natasha</p>
+            <p class="filterDiv natasha">"Anyway, back to me begging." -Natasha</p>
+            <p class="filterDiv natasha">"I'm literally on my knees in class at least twice a day." -Natasha</p>
+            <p class="filterDiv natasha">"That shit is more of a fleshlight than I am." -Natasha</p>
+            <p class="filterDiv natasha">"I could take it." -Natasha</p>
+            <p class="filterDiv natasha">"NOW COME AND FUCK ME BABY." -Natasha</p>
+            <p class="filterDiv natasha">"This man could rail me no questions asked." -Natasha</p>
+            <p class="filterDiv natasha">"I'll bite it if I want to." -Natasha</p>
+            <p class="filterDiv natasha">"I could swallow his children." -Natasha</p>
+            <p class="filterDiv natasha">"If I can't feel it in my clit then it's not real music." -Natasha</p>
+            <p class="filterDiv natasha">"Wouldn't be the first time I did it in public." -Natasha</p>
+            <p class="filterDiv natasha">"I do it with dick too." -Natasha</p>
+            <p class="filterDiv natasha">"Does stripping go on your resume?" -Natasha</p>
+            <p class="filterDiv natasha">"In my lack of a massive throbbing cock. for now..." -Natasha</p>
+            <p class="filterDiv natasha">"All these hot people make me wanna get railed frfr." -Natasha</p>
+            <p class="filterDiv natasha">"I used to drink grape flavored chocolate milk." -Natasha</p>
+            <p class="filterDiv natasha">"Flexibility is key." -Natasha</p>
+            <p class="filterDiv natasha">"I make such a great sex robot." -Natasha</p>
+            <p class="filterDiv natasha">"Hi Daddy." -Natasha</p>
+            <p class="filterDiv natasha">"I like dick too much" -Natasha</p>
+            <p class="filterDiv natasha">"Leave my dick alone" -Natasha</p>
+            <p class="filterDiv lauren">"When I pee it feels like butterflies" -Lauren</p>
+            <p class="filterDiv natasha">"Cannibalism is good" -Natasha</p>
+            <p class="filterDiv natasha">"We love assholes" -Natasha</p>
+            <p class="filterDiv natasha">"As a person, I suck a lot" -Natasha</p>
+            <p class="filterDiv natasha">"Why did you bite it" -Natasha</p>
+            <p class="filterDiv natasha">"I'd consent to a gangbang" -Natasha</p>
+            <p class="filterDiv lauren">"I keep edgeing it" -Lauren</p>
+            <p class="filterDiv lauren">"It's edgeing me" -Lauren</p>
+            <p class="filterDiv random">If someone did this over my grave, I might kill myself -random</p>
+            <p class="filterDiv natasha">"Hehe penis potato" -Natasha</p>
+            <p class="filterDiv natasha">"Hit on all the cars" -Natasha</p>
+            <p class="filterDiv natasha">"You're straight, stop trying to fuck my dad" -Natasha</p>
+            <p class="filterDiv natasha">"Fuck the kids" -Natasha</p>
+            <p class="filterDiv natasha">"I'd fuck the tv dude" -Natasha</p>
+            <p class="filterDiv">"Why would I please myself when I could use the real thing?" -Reese</p>
+            <p class="filterDiv">"He can choke me, respectfully" -Reese</p>
+            <p class="filterDiv">"Born to be choked, forced to act innocent." -Reese</p>
+            <p class="filterDiv">"It won't go all the way in" -Gavin</p>
+            <p class="filterDiv marci">"I turned that motherfucker gay" -Marci</p>
+            <p class="filterDiv natasha">"I'm gonna go home and strip." -Natasha</p>
+            <p class="filterDiv natasha">"I can't believe im writing smut listening to an ai cover of Schlatt singing bubblegum bitch on loop" -Natasha</p>
+            <p class="filterDiv natasha">"Chain me up daddy" -Natasha</p>
+            <p class="filterDiv natasha">"I can't just grab a twink" -Natasha</p>
+            <p class="filterDiv lauren">"I'm creaming bro it's so good" -Lauren</p>
+            <p class="filterDiv">"So what I'm hearing is I can fuck a 12 year old?" -Keith</p>
+            <p class="filterDiv">"I can thrust my hips better than half the guys on the internet" -Reese</p>
+        </div>
+    </div>
+
+        <script>
+            var myVar;
+            function myFunction() {
+                myVar = setTimeout(showPage, 700);
+            }
+            function showPage() {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("quotes").style.display = "block";
+            }
+        </script>
+
+        <script>
+            filterSelection("all")
+            function filterSelection(c) {
+                var x, i;
+                x = document.getElementsByClassName("filterDiv");
+                if (c == "all") c = "";
+                for (i = 0; i < x.length; i++) {
+                    w3RemoveClass(x[i], "show");
+                    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+                }
+            }
+
+            function w3AddClass(element, name) {
+                var i, arr1, arr2;
+                arr1 = element.className.split(" ");
+                arr2 = name.split(" ");
+                for (i = 0; i < arr2.length; i++) {
+                    if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+                }
+            }
+
+            function w3RemoveClass(element, name) {
+                var i, arr1, arr2;
+                arr1 = element.className.split(" ");
+                arr2 = name.split(" ");
+                for (i = 0; i < arr2.length; i++) {
+                    while (arr1.indexOf(arr2[i]) > -1) {
+                        arr1.splice(arr1.indexOf(arr2[i]), 1);
+                    }
+                }
+                element.className = arr1.join(" ");
+            }
+
+            var buttonContainer = document.getElementById("buttons");
+            var buttons = buttonContainer.getElementsByClassName("button");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", function () {
+                    var current = document.getElementsByClassName("active");
+                    current[0].className = current[0].className.replace(" active", "");
+                    this.className += " active";
+                });
+            }
+        </script>
+
+</body>
+
+</html>

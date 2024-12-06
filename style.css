@@ -1,0 +1,225 @@
+* {
+  --emily: #c00000;
+  --natasha: #ff4242;
+  --marci: #9ac791;
+  --alex: #a882ff;
+  --jonah: #a84a00;
+  --jewel: #e4b400;
+  --lauren: #2bcd6f;
+}
+
+body {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: "Roboto", sans-serif;
+  background-color: #111;
+  color: #eee;
+}
+
+::selection {
+  background-color: #eee;
+  color: #111;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #111;
+  border-radius: 10px;
+}
+
+/* Center the loader */
+#loader {
+  height: 5px;
+  background: #a882ff linear-gradient(to right, #a882ff, #82cdff, #a882ff);
+  background-size: 500%;
+  animation: 1s linear infinite loader;
+  width: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+}
+
+@keyframes spin {
+  0% {
+    background-position: 0% 0;
+  }
+
+  100% {
+    background-position: -125% 0;
+  }
+}
+
+#quotes,
+.quotes {
+  position: relative;
+  animation-name: animatebottom;
+  animation-duration: 1s;
+  display: none;
+}
+
+@keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+.filterDiv {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.container {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+#buttons {
+  cursor: default;
+}
+
+.button {
+  border: 3px solid #0000;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #0000;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  border-radius: 20px;
+  color: #888;
+  font-weight: bold;
+}
+
+button:hover {
+  border: 3px solid #888;
+  border-radius: 10px;
+}
+
+.button.active {
+  background-color: #0000;
+}
+
+.button.active {
+  color: #eee;
+}
+
+.button.active.emily {
+  color: var(--emily);
+}
+
+.emily::selection,
+.emily span::selection {
+  background-color: var(--emily);
+  color: #eee;
+}
+
+.emily > span:last-child {
+  color: var(--emily);
+}
+
+.button.active.natasha {
+  color: var(--natasha);
+}
+
+.natasha::selection,
+.natasha span::selection {
+  background-color: var(--natasha);
+  color: #eee;
+}
+
+.natasha > span:last-child {
+  color: var(--natasha);
+}
+
+.button.active.marci {
+  color: var(--marci);
+}
+
+.marci::selection,
+.marci span::selection {
+  background-color: var(--marci);
+  color: #eee;
+}
+
+.marci > span:last-child {
+  color: var(--marci);
+}
+
+.button.active.alex {
+  color: var(--alex);
+}
+
+.alex::selection,
+.alex span::selection {
+  background-color: var(--alex);
+  color: #eee;
+}
+
+.alex > span:last-child {
+  color: var(--alex);
+}
+
+.button.active.jonah {
+  color: var(--jonah);
+}
+
+.jonah::selection,
+.jonah span::selection {
+  background-color: var(--jonah);
+  color: #eee;
+}
+
+.jonah > span:last-child {
+  color: var(--jonah);
+}
+
+.button.active.jewel {
+  color: var(--jewel);
+}
+
+.jewel::selection,
+.jewel span::selection {
+  background-color: var(--jewel);
+  color: #eee;
+}
+
+.jewel > span:last-child {
+  color: var(--jewel);
+}
+
+.button.active.lauren {
+  color: var(--lauren);
+}
+
+.lauren::selection,
+.lauren span::selection {
+  background-color: var(--lauren);
+  color: #eee;
+}
+
+.lauren > span:last-child {
+  color: var(--lauren);
+}
+
+.button.active.random {
+  color: var(--krai-white);
+}
