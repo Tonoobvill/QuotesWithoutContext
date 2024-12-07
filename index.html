@@ -4,18 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Funny words without context">
-    <meta name="color-scheme" content="dark" />
+    <meta name="description" content="A list of random quotes from friends/random people">
+    <meta name="color-scheme" content="dark"/>
     <title>Quotes Without Context</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/x-icon" href="./favicon.svg">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="./jquery.lettering.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#container p").lettering('words');
-        });
-    </script>
     <style>
         * {
             --emily: #c00000;
@@ -224,7 +219,7 @@
 </head>
 
 <body style="margin:0;">
-    <div style="display:none;" id="quotes" class="quotes">
+    <div id="quotes" class="quotes">
         <h1>Quotes Without Context</h1>
 
         <div id="buttons">
