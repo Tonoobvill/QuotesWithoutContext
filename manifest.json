@@ -1,7 +1,7 @@
 {
     "name": "Quotes Without Context",
     "short_name": "Q w/o C",
-    "description": "Funny words without context.",
+    "description": "A list of random quotes from friends/random people.",
     "start_url": "/index.html",
     "display": "standalone",
     "lang": "en",

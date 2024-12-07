@@ -57,27 +57,6 @@
             border-radius: 10px;
         }
 
-        #loader {
-            height: 5px;
-            background: #a882ff linear-gradient(to right, #111, #a882ff );
-            background-size: 100%;
-            animation: 1s linear loader;
-            width: 100%;
-            left: 0;
-            position: fixed;
-            top: 0;
-        }
-
-        @keyframes loader {
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 100%;
-            }
-        }
-
         #quotes,
         .quotes {
             position: relative;
@@ -244,8 +223,7 @@
     </style>
 </head>
 
-<body onload="myFunction()" style="margin:0;">
-    <div id="loader"></div>
+<body style="margin:0;">
     <div style="display:none;" id="quotes" class="quotes">
         <h1>Quotes Without Context</h1>
 
@@ -642,7 +620,8 @@
             <p class="filterDiv">"It won't go all the way in" -Gavin</p>
             <p class="filterDiv marci">"I turned that motherfucker gay" -Marci</p>
             <p class="filterDiv natasha">"I'm gonna go home and strip." -Natasha</p>
-            <p class="filterDiv natasha">"I can't believe im writing smut listening to an ai cover of Schlatt singing bubblegum bitch on loop" -Natasha</p>
+            <p class="filterDiv natasha">"I can't believe im writing smut listening to an ai cover of Schlatt singing
+                bubblegum bitch on loop" -Natasha</p>
             <p class="filterDiv natasha">"Chain me up daddy" -Natasha</p>
             <p class="filterDiv natasha">"I can't just grab a twink" -Natasha</p>
             <p class="filterDiv lauren">"I'm creaming bro it's so good" -Lauren</p>
@@ -650,61 +629,49 @@
             <p class="filterDiv">"I can thrust my hips better than half the guys on the internet" -Reese</p>
         </div>
     </div>
-
-        <script>
-            var myVar;
-            function myFunction() {
-                myVar = setTimeout(showPage, 700);
+    <script>
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("filterDiv");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
             }
-            function showPage() {
-                document.getElementById("loader").style.display = "none";
-                document.getElementById("quotes").style.display = "block";
-            }
-        </script>
+        }
 
-        <script>
-            filterSelection("all")
-            function filterSelection(c) {
-                var x, i;
-                x = document.getElementsByClassName("filterDiv");
-                if (c == "all") c = "";
-                for (i = 0; i < x.length; i++) {
-                    w3RemoveClass(x[i], "show");
-                    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+            }
+        }
+
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
                 }
             }
+            element.className = arr1.join(" ");
+        }
 
-            function w3AddClass(element, name) {
-                var i, arr1, arr2;
-                arr1 = element.className.split(" ");
-                arr2 = name.split(" ");
-                for (i = 0; i < arr2.length; i++) {
-                    if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
-                }
-            }
-
-            function w3RemoveClass(element, name) {
-                var i, arr1, arr2;
-                arr1 = element.className.split(" ");
-                arr2 = name.split(" ");
-                for (i = 0; i < arr2.length; i++) {
-                    while (arr1.indexOf(arr2[i]) > -1) {
-                        arr1.splice(arr1.indexOf(arr2[i]), 1);
-                    }
-                }
-                element.className = arr1.join(" ");
-            }
-
-            var buttonContainer = document.getElementById("buttons");
-            var buttons = buttonContainer.getElementsByClassName("button");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].addEventListener("click", function () {
-                    var current = document.getElementsByClassName("active");
-                    current[0].className = current[0].className.replace(" active", "");
-                    this.className += " active";
-                });
-            }
-        </script>
+        var buttonContainer = document.getElementById("buttons");
+        var buttons = buttonContainer.getElementsByClassName("button");
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
 
 </body>
 
