@@ -38,34 +38,11 @@ body {
   border-radius: 10px;
 }
 
-/* Center the loader */
-#loader {
-  height: 5px;
-  background: #a882ff linear-gradient(to right, #a882ff, #82cdff, #a882ff);
-  background-size: 500%;
-  animation: 1s linear infinite loader;
-  width: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-}
-
-@keyframes spin {
-  0% {
-    background-position: 0% 0;
-  }
-
-  100% {
-    background-position: -125% 0;
-  }
-}
-
 #quotes,
 .quotes {
   position: relative;
   animation-name: animatebottom;
   animation-duration: 1s;
-  display: none;
 }
 
 @keyframes animatebottom {
