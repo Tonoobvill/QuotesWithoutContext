@@ -11,245 +11,24 @@
     <link rel="icon" type="image/x-icon" href="./favicon.svg">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="./jquery.lettering.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css">
     <script>
         $(document).ready(function () {
             $("#container p").lettering('words');
         });
     </script>
-    <style>
-        * {
-            --emily: #c00000;
-            --natasha: #ff4242;
-            --marci: #9ac791;
-            --alex: #a882ff;
-            --jonah: #a84a00;
-            --jewel: #e4b400;
-            --lauren: #2bcd6f;
-        }
-
-        body {
-            display: flex;
-            box-sizing: border-box;
-            flex-direction: column;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 30px;
-            font-family: "Roboto", sans-serif;
-            background-color: #111;
-            color: #eee;
-        }
-
-        ::selection {
-            background-color: #eee;
-            color: #111;
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #0000;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #111;
-            border-radius: 10px;
-        }
-
-        #loader {
-            height: 5px;
-            background: #a882ff linear-gradient(to right, #111, #a882ff );
-            background-size: 100%;
-            animation: 1s linear loader;
-            width: 100%;
-            left: 0;
-            position: fixed;
-            top: 0;
-        }
-
-        @keyframes loader {
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 100%;
-            }
-        }
-
-        #quotes,
-        .quotes {
-            position: relative;
-            animation-name: animatebottom;
-            animation-duration: 1s;
-            display: none;
-        }
-
-        @keyframes animatebottom {
-            from {
-                bottom: -100px;
-                opacity: 0;
-            }
-
-            to {
-                bottom: 0;
-                opacity: 1;
-            }
-        }
-
-        .filterDiv {
-            display: none;
-        }
-
-        .show {
-            display: block;
-        }
-
-        .container {
-            margin-top: 20px;
-            overflow: hidden;
-        }
-
-        #buttons {
-            cursor: default;
-        }
-
-        .button {
-            border: 3px solid #0000;
-            outline: none;
-            padding: 12px 16px;
-            background-color: #0000;
-            cursor: pointer;
-            transition-duration: 0.5s;
-            border-radius: 20px;
-            color: #888;
-            font-weight: bold;
-        }
-
-        button:hover {
-            border: 3px solid #888;
-            border-radius: 10px;
-        }
-
-        .button.active {
-            background-color: #0000;
-        }
-
-        .button.active {
-            color: #eee;
-        }
-
-        .button.active.emily {
-            color: var(--emily);
-        }
-
-        .emily::selection,
-        .emily span::selection {
-            background-color: var(--emily);
-            color: #eee;
-        }
-
-        .emily>span:last-child {
-            color: var(--emily);
-        }
-
-        .button.active.natasha {
-            color: var(--natasha);
-        }
-
-        .natasha::selection,
-        .natasha span::selection {
-            background-color: var(--natasha);
-            color: #eee;
-        }
-
-        .natasha>span:last-child {
-            color: var(--natasha);
-        }
-
-        .button.active.marci {
-            color: var(--marci);
-        }
-
-        .marci::selection,
-        .marci span::selection {
-            background-color: var(--marci);
-            color: #eee;
-        }
-
-        .marci>span:last-child {
-            color: var(--marci);
-        }
-
-        .button.active.alex {
-            color: var(--alex);
-        }
-
-        .alex::selection,
-        .alex span::selection {
-            background-color: var(--alex);
-            color: #eee;
-        }
-
-        .alex>span:last-child {
-            color: var(--alex);
-        }
-
-        .button.active.jonah {
-            color: var(--jonah);
-        }
-
-        .jonah::selection,
-        .jonah span::selection {
-            background-color: var(--jonah);
-            color: #eee;
-        }
-
-        .jonah>span:last-child {
-            color: var(--jonah);
-        }
-
-        .button.active.jewel {
-            color: var(--jewel);
-        }
-
-        .jewel::selection,
-        .jewel span::selection {
-            background-color: var(--jewel);
-            color: #eee;
-        }
-
-        .jewel>span:last-child {
-            color: var(--jewel);
-        }
-
-        .button.active.lauren {
-            color: var(--lauren);
-        }
-
-        .lauren::selection,
-        .lauren span::selection {
-            background-color: var(--lauren);
-            color: #eee;
-        }
-
-        .lauren>span:last-child {
-            color: var(--lauren);
-        }
-
-        .button.active.random {
-            color: var(--krai-white);
-        }
-    </style>
 </head>
 
-<body onload="myFunction()" style="margin:0;">
+<body onload="loader()" style="margin:0;">
     <div id="loader"></div>
     <div style="display:none;" id="quotes" class="quotes">
         <h1>Quotes Without Context</h1>
-
+        <i class="fa-solid fa-circle-half-stroke"></i>
         <div id="buttons">
+            <button class="lightdark" onclick="lightDark()">
+                <i class="fa fa-adjust" style="font-size:15px"></i>
+            </button>
             <button class="button active" onclick="filterSelection('all')"> All</button>
             <button class="button emily" onclick="filterSelection('emily')"> Emily</button>
             <button class="button natasha" onclick="filterSelection('natasha')"> Natasha</button>
@@ -652,13 +431,20 @@
     </div>
 
         <script>
-            var myVar;
-            function myFunction() {
-                myVar = setTimeout(showPage, 700);
+            var loaderVar;
+            function loader() {
+                loaderVar = setTimeout(showPage, 700);
             }
             function showPage() {
                 document.getElementById("loader").style.display = "none";
                 document.getElementById("quotes").style.display = "block";
+            }
+        </script>
+
+        <script>
+            function lightDark() {
+                var element = document.body;
+                element.classList.toggle("light-mode");
             }
         </script>
 

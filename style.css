@@ -20,6 +20,24 @@ body {
   color: #eee;
 }
 
+.light-mode {
+  background-color: #eee;
+  color: #111;
+  
+}
+
+.lightdark {
+  border: 3px solid #0000;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #0000;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  border-radius: 20px;
+  color: #888;
+  font-weight: bold;
+}
+
 ::selection {
   background-color: #eee;
   color: #111;
@@ -38,25 +56,24 @@ body {
   border-radius: 10px;
 }
 
-/* Center the loader */
 #loader {
   height: 5px;
-  background: #a882ff linear-gradient(to right, #a882ff, #82cdff, #a882ff);
-  background-size: 500%;
-  animation: 1s linear infinite loader;
+  background: #a882ff linear-gradient(to right, #111, #a882ff );
+  background-size: 100%;
+  animation: 1s linear loader;
   width: 100%;
   left: 0;
   position: fixed;
   top: 0;
 }
 
-@keyframes spin {
+@keyframes loader {
   0% {
-    background-position: 0% 0;
+      left: -100%;
   }
 
   100% {
-    background-position: -125% 0;
+      left: 100%;
   }
 }
 
@@ -70,13 +87,13 @@ body {
 
 @keyframes animatebottom {
   from {
-    bottom: -100px;
-    opacity: 0;
+      bottom: -100px;
+      opacity: 0;
   }
 
   to {
-    bottom: 0;
-    opacity: 1;
+      bottom: 0;
+      opacity: 1;
   }
 }
 
@@ -118,6 +135,10 @@ button:hover {
   background-color: #0000;
 }
 
+.light-mode .button.active {
+  color: #000;
+}
+
 .button.active {
   color: #eee;
 }
@@ -132,7 +153,7 @@ button:hover {
   color: #eee;
 }
 
-.emily > span:last-child {
+.emily>span:last-child {
   color: var(--emily);
 }
 
@@ -146,7 +167,7 @@ button:hover {
   color: #eee;
 }
 
-.natasha > span:last-child {
+.natasha>span:last-child {
   color: var(--natasha);
 }
 
@@ -160,7 +181,7 @@ button:hover {
   color: #eee;
 }
 
-.marci > span:last-child {
+.marci>span:last-child {
   color: var(--marci);
 }
 
@@ -174,7 +195,7 @@ button:hover {
   color: #eee;
 }
 
-.alex > span:last-child {
+.alex>span:last-child {
   color: var(--alex);
 }
 
@@ -188,7 +209,7 @@ button:hover {
   color: #eee;
 }
 
-.jonah > span:last-child {
+.jonah>span:last-child {
   color: var(--jonah);
 }
 
@@ -202,7 +223,7 @@ button:hover {
   color: #eee;
 }
 
-.jewel > span:last-child {
+.jewel>span:last-child {
   color: var(--jewel);
 }
 
@@ -216,7 +237,7 @@ button:hover {
   color: #eee;
 }
 
-.lauren > span:last-child {
+.lauren>span:last-child {
   color: var(--lauren);
 }
 
