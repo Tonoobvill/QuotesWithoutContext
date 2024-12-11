@@ -38,6 +38,23 @@ body {
   font-weight: bold;
 }
 
+.lightdark .lightdark-popup {
+  display: none;
+  background-color: #888;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  margin: 18px -18px;
+  transition-duration: 0.5s;
+}
+
+.lightdark:hover .lightdark-popup {
+  display: block;
+}
+
 ::selection {
   background-color: #eee;
   color: #111;
