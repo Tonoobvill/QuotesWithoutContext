@@ -25,9 +25,13 @@
     <div style="display:none;" id="quotes" class="quotes">
         <h1>Quotes Without Context</h1>
         <div id="buttons">
+            <button class="lightdark" onclick="newQuotes()">
+                <i class="fa fa-comment" style="font-size: 20px; color:#db9e34"></i>
+                <span class="popup">Jump to new quotes</span>
+            </button>
             <button class="lightdark" onclick="lightDark()">
                 <i class="fa fa-adjust" style="font-size:15px"></i>
-                <span class="lightdark-popup">Switch between light and dark mode</span>
+                <span class="popup">Switch between light and dark mode</span>
             </button>
             <button class="button active" onclick="filterSelection('all')"> All</button>
             <button class="button emily" onclick="filterSelection('emily')"> Emily</button>
@@ -427,6 +431,10 @@
             <p class="filterDiv lauren">"I'm creaming bro it's so good" -Lauren</p>
             <p class="filterDiv">"So what I'm hearing is I can fuck a 12 year old?" -Keith</p>
             <p class="filterDiv">"I can thrust my hips better than half the guys on the internet" -Reese</p>
+            <div id="newQuotes"><i class="fa fa-comment" style="font-size:20px; color:#db9e34; padding-right: 10px"></i>New Quotes</div>
+            <p class="filterDiv">"That was tight.. just like me" -Reese</p>
+            <p class="filterDiv">"I had a gay man who wanted me to bounce on his dick, but it was too small to bounce on" -Random</p>
+            <p class="filterDiv">"Who said it wasn't big enough?" -Random</p>
         </div>
     </div>
 
@@ -445,6 +453,12 @@
             function lightDark() {
                 var element = document.body;
                 element.classList.toggle("light-mode");
+            }
+        </script>
+
+        <script>
+            function newQuotes() {
+                document.getElementById('newQuotes').scrollIntoView({ behavior: 'smooth' });
             }
         </script>
 

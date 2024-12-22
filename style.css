@@ -20,13 +20,13 @@ body {
   color: #eee;
 }
 
-.light-mode {
+.light-mode, .newQuotes, a {
   background-color: #eee;
   color: #111;
   
 }
 
-.lightdark {
+.lightdark, .newQuotes, a {
   border: 3px solid #0000;
   outline: none;
   padding: 12px 16px;
@@ -36,9 +36,10 @@ body {
   border-radius: 20px;
   color: #888;
   font-weight: bold;
+  text-decoration: none;
 }
 
-.lightdark .lightdark-popup {
+.lightdark .popup {
   display: none;
   background-color: #888;
   color: #fff;
@@ -49,9 +50,24 @@ body {
   z-index: 1;
   margin: 18px -18px;
   transition-duration: 0.5s;
+  font-size: 13px
 }
 
-.lightdark:hover .lightdark-popup {
+a .popup {
+  display: none;
+  background-color: #888;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  margin: 4px 0px;
+  transition-duration: 0.5s;
+  font-size: 13px
+}
+
+.lightdark:hover .popup, .newQuotes:hover .popup, a:hover .popup {
   display: block;
 }
 
@@ -131,10 +147,10 @@ body {
   cursor: default;
 }
 
-.button {
+a, .button {
   border: 3px solid #0000;
   outline: none;
-  padding: 12px 16px;
+  padding: 12px;
   background-color: #0000;
   cursor: pointer;
   transition-duration: 0.5s;
@@ -143,7 +159,7 @@ body {
   font-weight: bold;
 }
 
-button:hover {
+a:hover, button:hover {
   border: 3px solid #888;
   border-radius: 10px;
 }
@@ -258,6 +274,20 @@ button:hover {
   color: var(--lauren);
 }
 
-.button.active.random {
-  color: var(--krai-white);
+#newQuotes {
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: #db9e34;
+  font-size: 18px;
+  padding-right: 20px;
+  font-weight: bold;
+}
+
+#newQuotes::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background-color: currentColor;
+  margin-left: 10px;
 }
