@@ -76,22 +76,9 @@ a .popup {
   color: #111;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0000;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #111;
-  border-radius: 10px;
-}
-
 #loader {
   height: 5px;
-  background: #a882ff linear-gradient(to right, #111, #a882ff);
+  background: #db9e34 linear-gradient(to right, #111, #db9e34);
   background-size: 100%;
   animation: 1s linear loader;
   width: 100%;
