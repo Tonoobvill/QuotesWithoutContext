@@ -15,7 +15,7 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   padding: 30px;
-  font-family: "Tahoma", sans-serif;
+  font-family: Tahoma, sans-serif;
   background-color: #111;
   color: #eee;
 }
@@ -23,21 +23,20 @@ body {
 .light-mode, .newQuotes, a {
   background-color: #eee;
   color: #111;
-  
 }
 
 .lightdark, .newQuotes {
   border: 3px solid #0000;
-  outline: none;
+  outline: 0;
   padding: 5px 10px 10px 10px;
   background-color: #0000;
   cursor: pointer;
   transition-duration: 0.5s;
   border-radius: 20px;
   color: #888;
-  font-weight: bold;
+  font-weight: 700;
   text-decoration: none;
-  font-size: 20px
+  font-size: 20px;
 }
 
 .lightdark .popup, .newQuotes .popup {
@@ -51,7 +50,7 @@ body {
   z-index: 1;
   margin: 18px -18px;
   transition-duration: 0.5s;
-  font-size: 13px
+  font-size: 13px;
 }
 
 a .popup {
@@ -63,9 +62,9 @@ a .popup {
   padding: 8px;
   position: absolute;
   z-index: 1;
-  margin: 4px 0px;
+  margin: 4px 0;
   transition-duration: 0.5s;
-  font-size: 13px
+  font-size: 13px;
 }
 
 .lightdark:hover .popup, .newQuotes:hover .popup {
@@ -92,7 +91,7 @@ a .popup {
 
 #loader {
   height: 5px;
-  background: #a882ff linear-gradient(to right, #111, #a882ff );
+  background: #a882ff linear-gradient(to right, #111, #a882ff);
   background-size: 100%;
   animation: 1s linear loader;
   width: 100%;
@@ -111,8 +110,7 @@ a .popup {
   }
 }
 
-#quotes,
-.quotes {
+#quotes, .quotes {
   position: relative;
   animation-name: animatebottom;
   animation-duration: 1s;
@@ -150,14 +148,14 @@ a .popup {
 
 .button {
   border: 3px solid #0000;
-  outline: none;
+  outline: 0;
   padding: 12px;
   background-color: #0000;
   cursor: pointer;
   transition-duration: 0.5s;
   border-radius: 20px;
   color: #888;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 button:hover {
@@ -186,13 +184,12 @@ button:hover {
   color: var(--emily);
 }
 
-.emily::selection,
-.emily span::selection {
+.emily span::selection, .emily::selection {
   background-color: var(--emily);
   color: #eee;
 }
 
-.emily>span:last-child {
+.emily > span:last-child {
   color: var(--emily);
 }
 
@@ -200,13 +197,12 @@ button:hover {
   color: var(--natasha);
 }
 
-.natasha::selection,
-.natasha span::selection {
+.natasha span::selection, .natasha::selection {
   background-color: var(--natasha);
   color: #eee;
 }
 
-.natasha>span:last-child {
+.natasha > span:last-child {
   color: var(--natasha);
 }
 
@@ -214,13 +210,12 @@ button:hover {
   color: var(--marci);
 }
 
-.marci::selection,
-.marci span::selection {
+.marci span::selection, .marci::selection {
   background-color: var(--marci);
   color: #eee;
 }
 
-.marci>span:last-child {
+.marci > span:last-child {
   color: var(--marci);
 }
 
@@ -228,13 +223,12 @@ button:hover {
   color: var(--alex);
 }
 
-.alex::selection,
-.alex span::selection {
+.alex span::selection, .alex::selection {
   background-color: var(--alex);
   color: #eee;
 }
 
-.alex>span:last-child {
+.alex > span:last-child {
   color: var(--alex);
 }
 
@@ -242,13 +236,12 @@ button:hover {
   color: var(--jonah);
 }
 
-.jonah::selection,
-.jonah span::selection {
+.jonah span::selection, .jonah::selection {
   background-color: var(--jonah);
   color: #eee;
 }
 
-.jonah>span:last-child {
+.jonah > span:last-child {
   color: var(--jonah);
 }
 
@@ -256,13 +249,12 @@ button:hover {
   color: var(--jewel);
 }
 
-.jewel::selection,
-.jewel span::selection {
+.jewel span::selection, .jewel::selection {
   background-color: var(--jewel);
   color: #eee;
 }
 
-.jewel>span:last-child {
+.jewel > span:last-child {
   color: var(--jewel);
 }
 
@@ -270,13 +262,12 @@ button:hover {
   color: var(--lauren);
 }
 
-.lauren::selection,
-.lauren span::selection {
+.lauren span::selection, .lauren::selection {
   background-color: var(--lauren);
   color: #eee;
 }
 
-.lauren>span:last-child {
+.lauren > span:last-child {
   color: var(--lauren);
 }
 
@@ -287,11 +278,11 @@ button:hover {
   color: #db9e34;
   font-size: 18px;
   padding-right: 20px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 #newQuotes::after {
-  content: '';
+  content: "";
   flex-grow: 1;
   height: 1px;
   background-color: currentColor;
