@@ -3,7 +3,7 @@
   --natasha: #ff4242;
   --marci: #9ac791;
   --alex: #a882ff;
-  --jonah: #a84a00;
+  --reese: #5446ed;
   --jewel: #e4b400;
   --lauren: #2bcd6f;
 }
@@ -219,17 +219,17 @@ button:hover {
   color: var(--alex);
 }
 
-.button.active.jonah {
-  color: var(--jonah);
+.button.active.reese {
+  color: var(--reese);
 }
 
-.jonah span::selection, .jonah::selection {
-  background-color: var(--jonah);
+.reese span::selection, .reese::selection {
+  background-color: var(--reese);
   color: #eee;
 }
 
-.jonah > span:last-child {
-  color: var(--jonah);
+.reese > span:last-child {
+  color: var(--reese);
 }
 
 .button.active.jewel {
@@ -271,7 +271,8 @@ button:hover {
 #newQuotes::after {
   content: "";
   flex-grow: 1;
-  height: 1px;
+  height: 4px;
   background-color: currentColor;
   margin-left: 10px;
+  border-radius: 10px;
 }
