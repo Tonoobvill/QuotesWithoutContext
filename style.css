@@ -15,7 +15,7 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   padding: 30px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Tahoma", sans-serif;
   background-color: #111;
   color: #eee;
 }
@@ -26,10 +26,10 @@ body {
   
 }
 
-.lightdark, .newQuotes, a {
+.lightdark, .newQuotes {
   border: 3px solid #0000;
   outline: none;
-  padding: 12px 16px;
+  padding: 5px 10px 10px 10px;
   background-color: #0000;
   cursor: pointer;
   transition-duration: 0.5s;
@@ -37,9 +37,10 @@ body {
   color: #888;
   font-weight: bold;
   text-decoration: none;
+  font-size: 20px
 }
 
-.lightdark .popup {
+.lightdark .popup, .newQuotes .popup {
   display: none;
   background-color: #888;
   color: #fff;
@@ -67,7 +68,7 @@ a .popup {
   font-size: 13px
 }
 
-.lightdark:hover .popup, .newQuotes:hover .popup, a:hover .popup {
+.lightdark:hover .popup, .newQuotes:hover .popup {
   display: block;
 }
 
@@ -147,7 +148,7 @@ a .popup {
   cursor: default;
 }
 
-a, .button {
+.button {
   border: 3px solid #0000;
   outline: none;
   padding: 12px;
@@ -159,8 +160,13 @@ a, .button {
   font-weight: bold;
 }
 
-a:hover, button:hover {
+button:hover {
   border: 3px solid #888;
+  border-radius: 10px;
+}
+
+.newQuotes:hover {
+  border: 3px solid #db9e34;
   border-radius: 10px;
 }
 
