@@ -35,17 +35,70 @@
                 <span class="popup">Switch between light and dark mode</span>
             </button>
             <button class="button active" onclick="filterSelection('all')"> All</button>
-            <button class="button emily" onclick="filterSelection('emily')"> Emily</button>
-            <button class="button natasha" onclick="filterSelection('natasha')"> Natasha</button>
-            <button class="button marci" onclick="filterSelection('marci')"> Marci</button>
-            <button class="button alex" onclick="filterSelection('alex')"> Alex</button>
-            <button class="button jewel" onclick="filterSelection('jewel')"> Jewel</button>
-            <button class="button lauren" onclick="filterSelection('lauren')"> Lauren</button>
-            <button class="button reese" onclick="filterSelection('reese')"> Reese</button>
+            <button class="button emily" onclick="filterSelection('emily')"> Emily <span id="emily-counter"class="counter"></span></button>
+            <button class="button natasha" onclick="filterSelection('natasha')"> Natasha <span id="natasha-counter"class="counter"></span></button>
+            <button class="button marci" onclick="filterSelection('marci')"> Marci <span id="marci-counter"class="counter"></span></button>
+            <button class="button alex" onclick="filterSelection('alex')"> Alex <span id="alex-counter"class="counter"></span></button>
+            <button class="button jewel" onclick="filterSelection('jewel')"> Jewel <span id="jewel-counter"class="counter"></span></button>
+            <button class="button lauren" onclick="filterSelection('lauren')"> Lauren <span id="lauren-counter"class="counter"></span></button>
+            <button class="button reese" onclick="filterSelection('reese')"> Reese <span id="reese-counter"class="counter"></span></button>
             <button class="button random" onclick="filterSelection('random')"> Random</button>
-        </div>
 
-        <div id="container" class="container">
+            <style>
+                .counter {
+                    font-size: 0.8em;
+                    font-weight: normal;
+                    color: #8885;
+                }
+            </style>
+            <script>
+
+                var counters = {
+                    emily: 0,
+                    natasha: 0,
+                    marci: 0,
+                    alex: 0,
+                    jewel: 0,
+                    lauren: 0,
+                    reese: 0
+                };
+
+                function filterSelection(c) {
+                    var x, i;
+                    x = document.getElementsByClassName("filterDiv");
+                    if (c == "all") c = "";
+                    for (i = 0; i < x.length; i++) {
+                        w3RemoveClass(x[i], "show");
+                        if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+                    }
+                    if (c !== "all" && c !== "random") {
+                        updateCounter(c);
+                    }
+                }
+
+                function updateCounter(c) {
+                    counters[c]++;
+                    var counterElement = document.getElementById(c + '-counter');
+                    if (counters[c] > 0) {
+                        counterElement.innerText = `(${counters[c]})`;
+                    } else {
+                        counterElement.innerText = "";
+                    }
+                }
+
+                // Initialize the counters
+                document.addEventListener("DOMContentLoaded", function () {
+                    var categories = ["emily", "natasha", "marci", "alex", "jewel", "lauren", "reese"];
+                    categories.forEach(function (category) {
+                        var count = document.querySelectorAll(`.filterDiv.${category}`).length;
+                        counters[category] = count;
+                        updateCounter(category);
+                    });
+                });
+
+                filterSelection("all");
+            </script>
+            <div id="container" class="container">
             <p class="filterDiv emily">"Yes sperm, I also have a sugar daddy." -Emily</p>
             <p class="filterDiv emily">*barks* -Emily</p>
             <p class="filterDiv emily">"I'm white." -Emily</p>

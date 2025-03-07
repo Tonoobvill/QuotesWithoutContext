@@ -16,8 +16,7 @@ body {
   margin: 0 auto;
   padding: 30px;
   font-family: Tahoma, sans-serif;
-  background-color: #111;
-  color: #eee;
+  background:#111;
 }
 
 .light-mode, .newQuotes, a {
